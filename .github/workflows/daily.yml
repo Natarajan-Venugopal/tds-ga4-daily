@@ -1,12 +1,12 @@
-name: Daily Commit Workflow
+name: DevSync Automated Daily Commit
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # Runs daily at 12:00 PM UTC
+    - cron: '30 6 * * *'  # Runs daily at 6:30 AM UTC (Adjust as needed)
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
-  commit:
+  daily-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -14,7 +14,7 @@ jobs:
 
       - name: Add a commit with your email 24f1000313@ds.study.iitm.ac.in
         run: |
-          echo "Automated daily commit" >> daily-log.txt
+          echo "Automated daily commit on $(date)" >> daily-log.txt
           git config --global user.name "GitHub Actions"
           git config --global user.email "24f1000313@ds.study.iitm.ac.in"
           git add daily-log.txt
